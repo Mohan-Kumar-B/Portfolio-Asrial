@@ -1,0 +1,15 @@
+# Ignore image folders
+A/
+T/
+V/
+images/
+
+# Ignore image files
+*.jpg
+*.jpeg
+*.png
+*.webp
+
+# Optional (good practice)
+node_modules/
+.env

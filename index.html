@@ -26,7 +26,7 @@
 
   /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;justify-content:space-between;align-items:center;padding:24px 48px;mix-blend-mode:normal;pointer-events:all}
-  nav .logo{font-family:'Cinzel',serif;font-size:13px;letter-spacing:0.25em;color:var(--off-white);opacity:0.7;cursor:pointer}
+  nav .logo{font-family:'Cinzel',serif;font-size:13px;letter-spacing:0.25em;color:black;opacity:0.7;cursor:pointer}
   nav .nav-links{display:flex;gap:36px}
   nav .nav-links a{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--off-white);opacity:0.5;cursor:pointer;text-decoration:none;transition:opacity 0.3s}
   nav .nav-links a:hover,nav .nav-links a.active-link{opacity:1}
@@ -54,6 +54,17 @@
   #page-about{background:var(--near-black);padding:0}
   .about-grid{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
   .about-left{position:relative;overflow:hidden}
+  .about-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+}
+
+.about-left {
+  position: relative;
+  overflow: hidden;
+}
   .about-img-placeholder{position:absolute;inset:0;background:linear-gradient(135deg,#1a1a1a 0%,#0d0d0d 100%);display:flex;align-items:center;justify-content:center}
   .about-img-placeholder::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(139,0,0,0.03) 0px,rgba(139,0,0,0.03) 1px,transparent 1px,transparent 20px)}
   .about-initials{font-family:'Cinzel',serif;font-size:120px;font-weight:400;color:rgba(139,0,0,0.12);letter-spacing:0.1em;user-select:none}
@@ -255,6 +266,107 @@
   opacity: 0.7;
   transform: translateX(-3px);
 }
+    /* ===== FIX SKILLS VISIBILITY ===== */
+
+#page-skills .skill-block {
+  background: #1a1a1a; /* keep dark card */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* Headings */
+#page-skills .skill-name {
+  color: #F5F0E8 !important; /* soft white */
+}
+
+/* Description */
+#page-skills .skill-desc {
+  color: rgba(245,240,232,0.75) !important;
+}
+
+/* Percentage text */
+#page-skills .skill-pct {
+  color: #d6c2a3 !important; /* subtle gold */
+}
+
+/* Numbers (01,02,03) */
+#page-skills .skill-num {
+  color: rgba(139,0,0,0.4) !important;
+}
+
+/* Labels */
+#page-skills .software-label {
+  color: rgba(245,240,232,0.6) !important;
+}
+
+/* Pills */
+#page-skills .pill {
+  color: #F5F0E8 !important;
+  border-color: rgba(245,240,232,0.2);
+}
+
+#page-skills .pill:hover {
+  background: #800000;
+  color: #ffffff !important;
+}
+    /* ===== FIX SOFTWARE & TOOLS VISIBILITY ===== */
+
+#page-skills .software-label {
+  color: #800000 !important; /* maroon heading */
+}
+
+/* Pills (tools) */
+#page-skills .pill {
+  color: #000000 !important;           /* dark text */
+  border: 1px solid rgba(0,0,0,0.2);   /* subtle border */
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Hover effect (premium feel) */
+#page-skills .pill:hover {
+  background: #800000;
+  color: #ffffff !important;
+  border-color: #800000;
+}
+    /* ===== MOBILE FIX FOR SLIDER BUTTONS ===== */
+@media (max-width: 768px) {
+
+  .slider-btn.left {
+    left: 10px !important;   /* move inside screen */
+  }
+
+  .slider-btn.right {
+    right: 10px !important;
+  }
+
+  .slider-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+
+
+}
+    /* ===== FIX SPACING BETWEEN SECTIONS ===== */
+
+.skills-extra {
+  margin-top: 60px;
+}
+
+.languages-section {
+  margin-top: 50px;
+}
+
+.software-label {
+  margin-bottom: 20px;
+  display: block;
+}
+
+.software-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
 </style>
 </head>
 <body>
@@ -265,7 +377,7 @@
 
 <!-- NAV -->
 <nav id="main-nav">
-  <div class="logo" onclick="goTo('hero')">PORTFOLIO 2025</div>
+  <div class="logo" onclick="goTo('hero')">ASRIAL — DESIGN</div>
   <div class="nav-links">
     <a onclick="goTo('hero')" data-page="hero">Home</a>
     <a onclick="goTo('about')" data-page="about">About</a>
@@ -312,9 +424,7 @@
 <div class="page" id="page-about">
   <div class="about-grid">
     <div class="about-left">
-      <div class="about-img-placeholder">
-        <div class="about-initials">YN</div>
-      </div>
+      <img src="images/profile.jpg" alt="My Photo" class="about-img">
       <div class="about-left-label">Fashion Designer</div>
     </div>
     <div class="about-right">
@@ -364,7 +474,7 @@
         <div class="card-tag">Studio</div>
         <div class="card-title">VIYORA</div>
         <div class="card-subtitle">Dark gothic romance</div>
-        <div class="card-type">[STUDIO]</div>
+
       </div>
     </div>
 
@@ -532,11 +642,11 @@
 
 /* 🔥 KEY PART */
 .slider-btn.left {
-  left: -50px;   /* sits just outside image border */
+  left: max(10px, calc(50% - 45vw));
 }
 
 .slider-btn.right {
-  right: -50px;
+  right: max(10px, calc(50% - 45vw));
 }
 
   .snap-section img {
@@ -729,28 +839,29 @@ nav {
 </div>
   <div class="project-slider">
 
-    <div class="slide-counter">1 / 9</div>
+    <div class="slide-counter">1 / 10</div>
 
     <div class="slide active">
       <div class="img-frame">
         <button class="slider-btn left" onclick="prevSlide()">‹</button>
-        <img src="cb 3 p.jpg.jpeg">
+        <img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/V1_zbczwn.jpg">
         <button class="slider-btn right" onclick="nextSlide()">›</button>
       </div>
     </div>
 
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="CLR B 3.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="dd ig.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="dr p 1.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="dr p 3.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="g r p 2.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="illu ig.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="lk b 3.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="tb 3.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/V2_c3x55v.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/V3_okxyag.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/V4_a2t4cx.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/V5_ketuzb.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/V6_v5lwdx.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/V7_sfp7jg.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/V8_xgvp9v.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/V9_fsh3ac.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/V10_tdzotn.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
 
   </div>
 </div>
-
 
 <!-- PROJECT 2 -->
 <div class="page proj-detail" id="page-proj2">
@@ -759,18 +870,19 @@ nav {
 </div>
   <div class="project-slider">
 
-    <div class="slide-counter">1 / 10</div>
+    <div class="slide-counter">1 / 11</div>
 
-    <div class="slide active"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="ds clr b.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="cb 2.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="TB 2.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="trim 2.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="dd th.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="il ds 2.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="t p 3.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="lk b 2.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="tb 2.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="tb 1.jpg.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide active"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/T1_bpusoq.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/T2_ooprhg.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/T3_mbv4s1.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/T4_ydy8yh.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/T5_lwuuma.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/T6_vqcfsc.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/T7_mc9vss.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/T8_hdqgaz.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/T9_ol4vuz.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/T10_nr1ell.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/T11_qncgjl.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
 
   </div>
 </div>
@@ -785,17 +897,17 @@ nav {
 
     <div class="slide-counter">1 / 11</div>
 
-    <div class="slide active"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="detail bd.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="a cb.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="dd R.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="ddddd.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="p b1 (1).jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="p b1 (2).jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="p b1 (3).jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="p b1 (4).jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="p b1 (5).jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="tr 2 (1).jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="tr 2 (2).jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide active"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/A1_rht4c4.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/A2_n4ixus.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/A3_l7lw1l.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/A4_bexvsm.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/A5_uqt1zb.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/A6_aotcnm.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/A7_fwppit.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/A8_cizlr6.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/A9_vbt71p.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/A10_z1nbie.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/A11_i5sboe.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
 
   </div>
 </div>
@@ -808,12 +920,13 @@ nav {
 </div>
   <div class="project-slider">
 
-    <div class="slide-counter">1 / 4</div>
+    <div class="slide-counter">1 / 5</div>
 
-    <div class="slide active"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="ophelia.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="S P 1.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="S P 2.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
-    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="S P 3.jpeg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide active"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/O1_hhtlgp.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/O2_kzau4n.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/O3_tgybz1.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/O4_fukqpo.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/O5_cdjsib.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
 
   </div>
 </div>
@@ -822,45 +935,25 @@ nav {
 
 
 <!-- PROJECT 5: MODEL SHOOT -->
+
 <div class="page proj-detail" id="page-proj5">
-  <div class="detail-hero">
-    <div class="detail-hero-bg" style="background:radial-gradient(ellipse at 45% 55%,#1a1208,#0d0d0d)">
-      <div style="font-size:200px;opacity:0.04;user-select:none">📷</div>
-    </div>
-    <div class="detail-overlay"></div>
-    <div class="detail-hero-content">
-      <div class="detail-back" onclick="goTo('projects')">
-        <span>← Back to Projects</span>
-      </div>
-      <div class="detail-cat">Photography — 2025</div>
-      <h1 class="detail-title">MODEL SHOOT</h1>
-      <p class="detail-subtitle">Fashion photography</p>
-    </div>
-    <div class="detail-num">5</div>
-  </div>
-  <div class="detail-body">
-    <div class="detail-text">
-      <h3>Concept</h3>
-      <p>A fashion photography project that strips away the excess of commercial image-making to find something more essential: the relationship between the body, the garment, and the light that falls between them.</p>
-      <p>Shot on high-contrast black and white film with a single studio light source, the images prioritise form over decoration. The model's presence is amplified rather than objectified — each frame is negotiated, collaborative, deliberate.</p>
-      <h3>Process</h3>
-      <p>Pre-production involved detailed mood boarding, garment selection, and multiple test shoots to dial in the lighting setup. The shoot itself was directed and styled personally. Post-production was minimal — grain retained, contrast pushed, no heavy retouching.</p>
-      <div class="img-grid">
-        <div class="img-placeholder" style="background:#181410">Pre-Production</div>
-        <div class="img-placeholder" style="background:#140f08">Test Shots</div>
-        <div class="img-placeholder" style="background:#181410">Behind Scenes</div>
-        <div class="img-placeholder" style="background:#0d0d0d">Final Frames</div>
-      </div>
-    </div>
-    <div class="detail-meta">
-      <div class="meta-item"><div class="meta-label">Category</div><div class="meta-value">Photography</div></div>
-      <div class="meta-item"><div class="meta-label">Theme</div><div class="meta-value">Form & Light</div></div>
-      <div class="meta-item"><div class="meta-label">Technique</div><div class="meta-value">Studio Photography, Film</div></div>
-      <div class="meta-item"><div class="meta-label">Palette</div><div class="meta-value">Monochrome</div></div>
-      <div class="meta-item"><div class="meta-label">Year</div><div class="meta-value">2025</div></div>
-    </div>
+    <div class="back-to-work" onclick="goTo('projects')">
+  ← Back
+</div>
+  <div class="project-slider">
+
+    <div class="slide-counter">1 / 5</div>
+
+    <div class="slide active"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/PHOTO1_fqp9qm.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/PHOTO2_pdhjmk.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/PHOTO3_ycfmnn.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/PHOTO4_pctr83.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+    <div class="slide"><div class="img-frame"><button class="slider-btn left" onclick="prevSlide()">‹</button><img src="https://res.cloudinary.com/dtvx1lu5q/image/upload/P5_jf0i4g.jpg"><button class="slider-btn right" onclick="nextSlide()">›</button></div></div>
+
   </div>
 </div>
+
+
 
 <!-- ═══════════════════════════════════════════ -->
 <!-- PAGE 4: SKILLS -->
@@ -915,21 +1008,34 @@ nav {
       <div class="skill-pct">Proficient — 78%</div>
     </div>
   </div>
+<div class="skills-extra">
 
+  <!-- SOFTWARE -->
   <div class="software-row fade-in">
     <div class="software-label">Software & Tools</div>
+
     <div class="software-pills">
+      <div class="pill">CLO 3D</div>
       <div class="pill">Adobe Illustrator</div>
       <div class="pill">Adobe Photoshop</div>
-      <div class="pill">CLO 3D</div>
-      <div class="pill">Procreate</div>
-      <div class="pill">InDesign</div>
+      <div class="pill">Affinity</div>
       <div class="pill">Canva</div>
-      <div class="pill">Lightroom</div>
-      <div class="pill">AutoCAD (Basic)</div>
     </div>
   </div>
+
+  <!-- LANGUAGES -->
+  <div class="software-row fade-in languages-section">
+    <div class="software-label">Languages Known</div>
+
+    <div class="software-pills">
+      <div class="pill">English</div>
+      <div class="pill">Tamil</div>
+      <div class="pill">Malayalam</div>
+    </div>
+  </div>
+
 </div>
+    </div> <!-- CLOSE SKILLS PAGE -->
 
 <!-- ═══════════════════════════════════════════ -->
 <!-- PAGE 5: CONTACT -->
